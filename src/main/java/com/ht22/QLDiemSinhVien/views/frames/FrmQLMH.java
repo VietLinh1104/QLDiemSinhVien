@@ -18,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
  * @author dmx
  */
 public class FrmQLMH extends javax.swing.JFrame {
+//    git test
     DAOKhoa categoryDao = new DAOKhoa();
     SubjectDao subjectDao = new SubjectDao();
     DefaultTableModel tblModelSubject = null;
