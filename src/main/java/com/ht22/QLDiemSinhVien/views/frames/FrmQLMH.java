@@ -7,8 +7,11 @@ package com.ht22.QLDiemSinhVien.views.frames;
 import com.ht22.QLDiemSinhVien.DAO.DAOKhoa;
 import com.ht22.QLDiemSinhVien.DAO.SubjectDao;
 import com.ht22.QLDiemSinhVien.entity.Khoa;
+import com.ht22.QLDiemSinhVien.entity.Lop;
 import com.ht22.QLDiemSinhVien.entity.Subject;
 
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
@@ -58,20 +61,18 @@ public class FrmQLMH extends javax.swing.JFrame {
 
         jLabel11 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        lstCategory = new javax.swing.JList<Khoa>();
+        lstCategory = new javax.swing.JList<>();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnNewCategory = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        btnUpdateCategory = new javax.swing.JButton();
-        btnRemoveCategory = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblSubject = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        cbCategory = new javax.swing.JComboBox<Khoa>();
+        cbCategory = new javax.swing.JComboBox<>();
         txtMaHocPhan = new javax.swing.JTextField();
         txtTenHocPhan = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -79,7 +80,6 @@ public class FrmQLMH extends javax.swing.JFrame {
         txtSoTinChi = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         taGhiChu = new javax.swing.JTextArea();
-        btnNew = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnRemove = new javax.swing.JButton();
@@ -132,24 +132,10 @@ public class FrmQLMH extends javax.swing.JFrame {
             }
         });
 
-        btnUpdateCategory.setText("Sửa");
-        btnUpdateCategory.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateCategoryActionPerformed(evt);
-            }
-        });
-
-        btnRemoveCategory.setText("Xóa");
-        btnRemoveCategory.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRemoveCategoryActionPerformed(evt);
-            }
-        });
-
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Thông tin chi tiết");
 
-        tblSubject.setModel(new DefaultTableModel(
+        tblSubject.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -196,17 +182,14 @@ public class FrmQLMH extends javax.swing.JFrame {
         taGhiChu.setRows(5);
         jScrollPane3.setViewportView(taGhiChu);
 
-        btnNew.setText("Thêm");
-        btnNew.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNewActionPerformed(evt);
-            }
-        });
-
         btnSave.setText("Lưu");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveActionPerformed(evt);
+                try {
+                    btnSaveActionPerformed(evt);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -276,8 +259,6 @@ public class FrmQLMH extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addComponent(btnNew)
-                                                .addGap(28, 28, 28)
                                                 .addComponent(btnUpdate)
                                                 .addGap(8, 8, 8))
                                             .addComponent(cbCategory, 0, 200, Short.MAX_VALUE)
@@ -305,11 +286,7 @@ public class FrmQLMH extends javax.swing.JFrame {
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(64, 64, 64)
-                        .addComponent(btnNewCategory)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnUpdateCategory)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnRemoveCategory))
+                        .addComponent(btnNewCategory))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -354,9 +331,6 @@ public class FrmQLMH extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNewCategory)
-                    .addComponent(btnUpdateCategory)
-                    .addComponent(btnRemoveCategory)
-                    .addComponent(btnNew)
                     .addComponent(btnSave)
                     .addComponent(btnRemove)
                     .addComponent(btnUpdate))
@@ -375,14 +349,6 @@ public class FrmQLMH extends javax.swing.JFrame {
     private void txtSoTinChiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSoTinChiActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSoTinChiActionPerformed
-
-    private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
-        // TODO add your handling code here:
-        txtMaHocPhan.setText("");
-        txtTenHocPhan.setText("");
-        txtSoTinChi.setText("");
-        taGhiChu.setText("");
-    }//GEN-LAST:event_btnNewActionPerformed
 
     private void txtMaHocPhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaHocPhanActionPerformed
         // TODO add your handling code here:
@@ -410,38 +376,32 @@ public class FrmQLMH extends javax.swing.JFrame {
 
     }//GEN-LAST:event_lstCategoryMouseClicked
 
-    private void btnUpdateCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateCategoryActionPerformed
-        //
-        this.dispose();   // ẩn form cũ và hiện form mới
-        new frm_khoa().setVisible(true);
-    }//GEN-LAST:event_btnUpdateCategoryActionPerformed
-
-    private void btnRemoveCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveCategoryActionPerformed
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        this.dispose();   // ẩn form cũ và hiện form mới
-        new frm_khoa().setVisible(true);
-    }//GEN-LAST:event_btnRemoveCategoryActionPerformed
-
-    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        // TODO add your handling code here:
-//        int categoryId =((Category)cbCategory.getSelectedItem()).getId();
-//        String maHocPhan = txtMaHocPhan.getText().trim();
-//        String tenHocPhan = txtTenHocPhan.getText().trim();
-//        String soTinChi = txtSoTinChi.getText().trim();
-//        String ghiChu = taGhiChu.getText().trim();
-//        if (maHocPhan.equals("") || tenHocPhan.equals("") || soTinChi.equals("") || ghiChu.equals("") ) {
-//            JOptionPane.showMessageDialog(rootPane, "Bạn phải nhập đủ thông tin!!!");
-//        } else {
-//            int idNew = subjectDao.insert(new Subject(0, categoryId, maHocPhan, tenHocPhan, Integer.parseInt(soTinChi), ghiChu));
-//            if (idNew >= 0) {
-//                JOptionPane.showMessageDialog(rootPane, "Thêm mới môn học thành công!!");
-//                String nameCate = categoryDao.get(categoryId).get().getTenChuyenNganh();
-//                Object[] rowData = new Object[] {nameCate ,maHocPhan,tenHocPhan,soTinChi,ghiChu};
-//                tblModelSubject.addRow(rowData);
-//        }   else {
-//                JOptionPane.showMessageDialog(rootPane, "Thêm mới môn học thất bại!!");
-//            }
-//        }
+        String maKhoa =((Khoa)cbCategory.getSelectedItem()).getMaKhoa();
+        String maHocPhan = txtMaHocPhan.getText().trim();
+        String tenHocPhan = txtTenHocPhan.getText().trim();
+        String soTinChi = txtSoTinChi.getText().trim();
+        String ghiChu = taGhiChu.getText().trim();
+        if (maHocPhan.equals("") || tenHocPhan.equals("") || soTinChi.equals("") || ghiChu.equals("") ) {
+            JOptionPane.showMessageDialog(rootPane, "Bạn phải nhập đủ thông tin!!!");
+        } else {
+            Subject sj =  new Subject( maHocPhan,  maKhoa,  tenHocPhan,  Integer.parseInt(soTinChi),  ghiChu);
+            try {
+//            DAO insert
+                subjectDao.insert(sj);
+                loadDatatoJTable();
+            } catch (SQLIntegrityConstraintViolationException e) {
+                // Lỗi trùng khóa chính (hoặc unique key)
+                JOptionPane.showMessageDialog(this, "Mã lớp đã tồn tại. Vui lòng nhập mã lớp khác.", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            } catch (SQLException e) {
+                // Lỗi chung liên quan đến cơ sở dữ liệu
+                JOptionPane.showMessageDialog(this, "Đã xảy ra lỗi khi thêm dữ liệu: " + e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+            } catch (Exception e) {
+                // Bắt các ngoại lệ khác nếu có
+                JOptionPane.showMessageDialog(this, "Đã xảy ra lỗi không xác định: " + e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
@@ -546,13 +506,10 @@ public class FrmQLMH extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnNew;
     private javax.swing.JButton btnNewCategory;
     private javax.swing.JButton btnRemove;
-    private javax.swing.JButton btnRemoveCategory;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JButton btnUpdateCategory;
     private javax.swing.JComboBox<Khoa> cbCategory;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -589,8 +546,38 @@ public class FrmQLMH extends javax.swing.JFrame {
             listModelCategory.addElement(category);
         }
         lstCategory.setModel(listModelCategory);
-        
+
+        lstCategory.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int selectedRow = lstCategory.getSelectedIndex();
+
+                if (selectedRow >= 0) {
+
+                    String maKhoa = lstCategory.getSelectedValue().getMaKhoa();
+                    List<Subject> subjects = subjectDao.getAllByKhoaID(maKhoa);
+
+//                    show data table by id of listSelected
+                    DefaultTableModel tblModelSubject = new DefaultTableModel();
+                    Object[] columnTilte = {"Mã Học Phần","Mã Khoa","Tên Học Phần", "Số Tín Chỉ", "Ghi Chú"};
+                    tblModelSubject.setColumnIdentifiers(columnTilte);
+                    Object[] rowData = null;
+
+
+                    for (Subject s : subjects) {
+                        rowData = new Object[]{s.getTenHocPhan(), s.getMaKhoa(), s.getTenHocPhan(), s.getSoTinChi(), s.getGhiChu()};
+                        tblModelSubject.addRow(rowData);
+                    }
+                    tblSubject.setModel(tblModelSubject);
+
+                }
+            }
+        });
+
+
     }
+
+
 
     private void loadDatatoCombox() {
         List<Khoa> khoas = categoryDao.getAll();
@@ -621,24 +608,6 @@ public class FrmQLMH extends javax.swing.JFrame {
         }
         tblSubject.setModel(tblModelSubject);
     }
-    
-    private void loadDatatoJTableByCategoryId(int[] categoryId) {
-//        listSubject.clear();
-//        for (int i = 0; i < categoryId.length; i++) {
-//            for (Subject s : subjectDao.getByCategoryId(categoryId[i])) {
-//                listSubject.add(s);
-//            }
-//        }
-//        tblModelSubject = new DefaultTableModel();
-//        Object[] columnTilte = {"Chuyên Ngành"," Mã Học Phần","Tên Học Phần","Số Tín Chỉ","Ghi Chú"};
-//        tblModelSubject.setColumnIdentifiers(columnTilte);
-//        Object[] rowData = null;
-//        String nameCate = "";
-//        for (Subject s : listSubject) {
-//            nameCate = categoryDao.get(s.getCategoryId()).get().getTenChuyenNganh();
-//            rowData = new Object[]{nameCate, s.getMaHocPhan(), s.getTenHocPhan(), s.getSoTinChi(), s.getGhiChu()};
-//            tblModelSubject.addRow(rowData);
-//        }
-//        tblSubject.setModel(tblModelSubject);
-        }
-    }  
+
+
+}
