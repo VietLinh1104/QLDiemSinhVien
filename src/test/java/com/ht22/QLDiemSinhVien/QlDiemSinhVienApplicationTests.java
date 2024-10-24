@@ -1,0 +1,13 @@
+package com.ht22.QLDiemSinhVien;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class QlDiemSinhVienApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}
